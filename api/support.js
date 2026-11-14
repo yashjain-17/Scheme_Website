@@ -2,7 +2,7 @@ import { randomBytes } from 'node:crypto';
 import supabase from './db-client.js';
 
 function generateTicketCode() {
-  return `TKT-${new Date().getFullYear()}-${randomBytes(8).toString('hex').slice(0, 12).toUpperCase()}`;
+  return `TKT-${new Date().getFullYear()}-${randomBytes(6).toString('hex').slice(0, 10).toUpperCase()}`;
 }
 
 export default async function handler(req, res) {
