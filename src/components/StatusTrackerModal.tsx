@@ -155,7 +155,7 @@ export const StatusTrackerModal: React.FC<StatusTrackerModalProps> = ({
               </div>
 
               <div className="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
-                <div>Applicant: <strong className="text-slate-900 dark:text-white">{application.applicant_name}</strong></div>
+                <div>Tracking: <strong className="text-slate-900 dark:text-white font-mono">{application.tracking_code}</strong></div>
                 <div>State: <strong className="text-slate-900 dark:text-white">{application.state}</strong></div>
               </div>
             </div>
