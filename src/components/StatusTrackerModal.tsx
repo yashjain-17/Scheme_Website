@@ -113,45 +113,26 @@ export const StatusTrackerModal: React.FC<StatusTrackerModalProps> = ({
                 </span>
               </div>
 
-              {/* Progress Tracker Steps */}
-              <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
-                <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                  Application Progress Timeline
+              <div className="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
+                <div className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                  Application record
                 </div>
-
-                <div className="space-y-3 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-300 dark:before:bg-slate-700">
-                  <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold">
-                      ✓
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 block">Submitted & Digitized</span>
-                      <span className="text-[10px] text-slate-400">
-                        {new Date(application.submitted_at).toLocaleDateString()}
-                      </span>
-                    </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold">
+                    ✓
                   </div>
-
-                  <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold">
-                      ✓
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 block">Nodal Officer Review</span>
-                      <span className="text-[10px] text-slate-400">Eligibility Documents Validated</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold animate-pulse">
-                      ●
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 block">DBT Treasury Sanction</span>
-                      <span className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">In Final Approval Queue</span>
-                    </div>
+                  <div>
+                    <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 block">
+                      Application submitted
+                    </span>
+                    <span className="text-[10px] text-slate-400">
+                      {new Date(application.submitted_at).toLocaleDateString()}
+                    </span>
                   </div>
                 </div>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                  This page displays the status stored by this demo application. It is not connected to a government department's live processing system.
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
