@@ -1,34 +1,79 @@
 # Scheme Website
 
-A web project focused on presenting scheme-related information through an accessible interface.
+A React + TypeScript + Vite application for browsing public-benefit scheme information, exploring eligibility, and using related support features. The project uses Supabase client libraries and includes serverless API handlers under `api/`.
 
-## Purpose
+> Scheme information can change. Always verify eligibility, benefit amounts, deadlines, and application procedures on the relevant official government portal.
 
-The project aims to make scheme information easier to browse and understand. Refer to the application source and data files for the current scope and supported content.
+## Tech stack
 
-## Getting started
+- React and TypeScript
+- Vite
+- Supabase JavaScript client
+- Tailwind CSS
+- Framer Motion
+- Vercel-style serverless handlers in `api/`
 
-For a typical Node.js frontend workflow:
+## Repository layout
+
+- `src/` — frontend application, components, contexts, translations, and utilities
+- `api/` — server-side handlers for schemes, applications, bookmarks, feedback, and support
+- `src/lib/supabase.ts` — browser Supabase client using Vite environment variables
+- `vercel.json` — deployment configuration
+- `package.json` — scripts and dependencies
+
+## Requirements
+
+- Node.js compatible with the Vite version declared in `package.json`
+- npm
+- A configured Supabase project for features that require backend data
+
+## Local setup
+
+Create a local environment file named `.env.local` in the project root. Configure the browser-safe values:
+
+```dotenv
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_publishable_or_anon_key
+```
+
+Never put a Supabase service-role key in a `VITE_*` variable or any frontend-exposed file. Configure server-only credentials in the hosting provider's encrypted environment settings.
+
+Install and start:
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Check `package.json` for the exact scripts and package manager supported by this repository.
+Other available scripts:
 
-## Quality checklist
+```bash
+npm run build
+npm run lint
+npm run preview
+```
 
-- Keep scheme names, eligibility details, benefits, and application links accurate.
-- Clearly identify the source and last-updated date of information.
-- Make the interface usable on mobile and desktop.
-- Provide accessible labels, keyboard navigation, and readable contrast.
-- Test all internal navigation and external application links.
+## Deployment configuration
 
-## Disclaimer
+The frontend reads `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Serverless code under `api/` must use server-only environment variables where required. Review `api/db-client.js` before deployment: it references `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, while the browser client uses Vite-prefixed variables. Configure the server-only values securely and align the URL variable names in deployment settings; do not copy service-role credentials into the repository.
 
-Users should verify eligibility, deadlines, and application requirements on the relevant official government portal before taking action.
+## Data accuracy and trust
+
+- Prefer official government sources for scheme names, benefits, eligibility, and application URLs.
+- Record source URLs and a last-verified date for each scheme record.
+- Clearly label illustrative, generated, or sample scheme content; never present it as verified government policy.
+- Do not promise eligibility based solely on a client-side wizard.
+- Provide an accessible disclaimer and a path to the official application portal.
+
+## Pre-deployment checklist
+
+- Confirm Supabase URL/key configuration separately for browser and server code.
+- Review Supabase Row Level Security policies and database permissions.
+- Verify that service-role credentials are server-only and never committed.
+- Test every API route, empty/error state, and external link.
+- Run `npm run build` and `npm run lint`.
+- Verify scheme data against official sources and add a last-verified date.
 
 ## Contributing
 
-Document new features, data sources, and setup changes in this README.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
