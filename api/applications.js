@@ -2,7 +2,7 @@ import { randomBytes } from 'node:crypto';
 import supabase from './db-client.js';
 
 function generateTrackingCode() {
-  return `SCH-${new Date().getFullYear()}-${randomBytes(8).toString('hex').slice(0, 12).toUpperCase()}`;
+  return `SCH-${new Date().getFullYear()}-${randomBytes(6).toString('hex').slice(0, 10).toUpperCase()}`;
 }
 
 export default async function handler(req, res) {
