@@ -21,6 +21,11 @@ export default async function handler(req, res) {
     if (!cleanMessage && !cleanSuggestion) {
       return res.status(400).json({ error: 'Message or scheme suggestion is required.' });
     }
+    const cleanEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
+    if (cleanEmail && (cleanEmail.length > 254 || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(cleanEmail))) {
+      return res.status(400).json({ error: 'Enter a valid email address.' });
+    }
+
     if (cleanMessage.length > 5000 || cleanSuggestion.length > 2000) {
       return res.status(400).json({ error: 'Feedback exceeds the allowed length.' });
     }
@@ -32,7 +37,7 @@ export default async function handler(req, res) {
 
     const newFeedback = {
       name: typeof name === 'string' && name.trim() ? name.trim().slice(0, 120) : 'Anonymous User',
-      email: typeof email === 'string' ? email.trim().slice(0, 254) : '',
+      email: cleanEmail,
       rating: parsedRating,
       message: cleanMessage,
       scheme_suggestion: cleanSuggestion,
